@@ -1,16 +1,15 @@
-import express, {Request, Response} from "express";
+import express from "express";
 import { config } from "./config/environment";
-import { StatusCodes } from "http-status-codes";
-import { getLocation } from "./services/weather.service";
+import {winstonLogger, morganLogger } from "./services/logger";
 
 
 const app = express();
 const port = config.PORT || 3000;
 
-//getLocation();
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(morganLogger);
 
-app.listen(port, () => console.log(`Server running on port ${port}...`));
+
+app.listen(port, () => winstonLogger.info(`Server running on port ${port}...`));

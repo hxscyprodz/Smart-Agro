@@ -5,6 +5,7 @@ dotenv.config({path: path.join(__dirname, '../../.env')});
 
 const mandatoryEnvironments = [
     "PORT",
+    "APP_ENV",
     "OPEN_WEATHER_API_TOKEN",
     "WHATSAPP_TOKEN"
 ];
@@ -16,12 +17,11 @@ if(missingEnvironments.length > 0) {
 
     console.log(`Environment variable(s) ${variablesString.substring(1, variablesString.length - 1)} required to start the application`)
     process.exit(1);
-}
+};
 
 export const config = {
     PORT: process.env.PORT,
+    APP_ENV: process.env.APP_ENV,
     OPEN_WEATHER_API_TOKEN: process.env.OPEN_WEATHER_API_TOKEN,
     WHATSAPP_TOKEN: process.env.WHATSAPP_TOKEN
-}
-
-console.log(missingEnvironments);
+};
